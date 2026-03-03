@@ -1,0 +1,36 @@
+title: Nouman Nawaz
+author: Nouman Nawaz
+description: Minimal, Apple-style portfolio.
+baseurl: ""
+url: "https://noumannawaz.github.io"
+lang: en
+timezone: UTC
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+
+theme: jekyll-apple
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+
+permalink: /:year/:month/:day/:title/
+paginate_path: /posts/:num/
+paginate: 5
+
+comments: false
+
+markdown: kramdown
+excerpt_separator: " "
+
+kramdown:
+  auto_ids: false
+  enable_coderay: false
+  entity_output: as_char
+  footnote_nr: 1
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  toc_levels: 1..6
