@@ -8,7 +8,11 @@
   <title>Nouman Nawaz</title>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --red: #eb0028;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       min-height: 100vh;
@@ -19,85 +23,214 @@
       font-size: 17px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      padding: 48px 32px;
-      max-width: 640px;
     }
-    h1 {
-      font-size: 28px;
+
+    /* ——— Header ——— */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 40px;
+      z-index: 100;
+      background: #000;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 22px;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 32px;
+      letter-spacing: -0.03em;
     }
-    .summary {
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 48px;
-    }
-    .summary p + p { margin-top: 16px; }
-    h2 {
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
+    .logo .initial { color: var(--red); }
+    .logo .name { color: #fff; }
+
+    /* ——— Menu (top right) ——— */
+    .menu {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 14px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 20px;
+      display: flex;
+      gap: 32px;
     }
-    .projects { list-style: none; }
-    .projects li {
-      padding: 14px 0;
+    .menu-item {
+      position: relative;
+      padding: 8px 0;
+      cursor: default;
+    }
+    .menu-item > span { color: #fff; }
+    .menu-item:hover > span { opacity: 0.9; }
+    .menu-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      min-width: 200px;
+      padding-top: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+    .menu-item:hover .menu-dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
+    .menu-dropdown a {
+      display: block;
+      padding: 10px 0;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: #000;
+      padding-right: 16px;
+    }
+    .menu-dropdown a:hover { color: #fff; }
+    .menu-dropdown a:last-child { border-bottom: none; }
+
+    /* ——— Main content ——— */
+    main {
+      padding: 120px 40px 80px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ——— Sections ——— */
+    .section {
+      padding: 80px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
+    .section:last-child { border-bottom: none; }
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 24px;
+    }
+    .section p { color: rgba(255,255,255,0.85); }
+    .section p + p { margin-top: 16px; }
+
+    /* ——— Projects ——— */
+    .projects { list-style: none; }
+    .projects li {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
     .projects li:last-child { border-bottom: none; }
-    .project-name { font-weight: 500; margin-bottom: 4px; }
+    .project-name { font-weight: 600; margin-bottom: 4px; }
     .project-desc { font-size: 15px; color: rgba(255,255,255,0.6); }
     .projects a {
       color: inherit;
       text-decoration: none;
       display: block;
     }
-    .projects a:hover .project-name { color: rgba(255,255,255,0.9); }
+    .projects a:hover .project-name { color: var(--red); }
+
+    /* ——— Connect ——— */
+    .connect-links { display: flex; flex-wrap: wrap; gap: 24px 32px; }
+    .connect-links a {
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .connect-links a:hover { color: var(--red); }
+
+    @media (max-width: 640px) {
+      .header { padding: 20px 24px; }
+      .logo { font-size: 18px; }
+      .menu { font-size: 12px; gap: 20px; }
+      main { padding: 100px 24px 60px; }
+      .section { padding: 48px 0; }
+    }
   </style>
 </head>
 <body>
-  <h1>Nouman Nawaz</h1>
+  <header class="header">
+    <div class="logo">
+      <span class="initial">M</span><span class="name"> Nouman Nawaz</span>
+    </div>
+    <nav class="menu">
+      <div class="menu-item">
+        <span>Projects</span>
+        <div class="menu-dropdown">
+          <a href="https://swius.com/careers/network-engineers/drive-testing-services/" target="_blank" rel="noopener noreferrer">Airview</a>
+          <a href="https://www.sdriveapp.com/" target="_blank" rel="noopener noreferrer">SDrive</a>
+          <a href="https://www.linkedin.com/in/noumannawaz/" target="_blank" rel="noopener noreferrer">Aspire</a>
+          <a href="https://avanzasolutions.com/rendezvous/" target="_blank" rel="noopener noreferrer">Rendezvous</a>
+          <a href="https://www.avanzasolutions.com/wp-content/uploads/bsk-pdf-manager/13_NIMBUS.PDF" target="_blank" rel="noopener noreferrer">Nimbus</a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span>Contact</span>
+        <div class="menu-dropdown">
+          <a href="https://www.linkedin.com/in/noumannawaz/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/noumannawaz" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@example.com" target="_blank" rel="noopener noreferrer">Email</a>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-  <div class="summary">
-    <p>Senior Software engineer with a passion for developing robust, scalable software. Been working in cross-functional teams, driving product development, and delivering results.</p>
-    <p>I have a strong work ethic and I get the job done. I'm a bit of a geek and bookworm, probably be found fixing tech and learning new stuff. In my free time, I enjoy traveling, reading and keeping up with the latest computer hardware trends. I enjoy staying current with new technologies and learning new skills.</p>
-  </div>
+  <main>
+    <section id="about" class="section">
+      <h2 class="section-title">About</h2>
+      <p>Senior Software engineer with a passion for developing robust, scalable software. Been working in cross-functional teams, driving product development, and delivering results.</p>
+      <p>I have a strong work ethic and I get the job done. I'm a bit of a geek and bookworm, probably be found fixing tech and learning new stuff. In my free time, I enjoy traveling, reading and keeping up with the latest computer hardware trends. I enjoy staying current with new technologies and learning new skills.</p>
+    </section>
 
-  <h2>Projects I contributed to</h2>
-  <ul class="projects">
-    <li>
-      <a href="https://swius.com/careers/network-engineers/drive-testing-services/" target="_blank" rel="noopener noreferrer">
-        <span class="project-name">Airview</span>
-        <span class="project-desc">Drive Testing solutions — mobile app for network diagnostics</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://www.sdriveapp.com/" target="_blank" rel="noopener noreferrer">
-        <span class="project-name">SDrive</span>
-        <span class="project-desc">Cloud storage desktop client for Salesforce</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://www.linkedin.com/in/noumannawaz/" target="_blank" rel="noopener noreferrer">
-        <span class="project-name">Aspire</span>
-        <span class="project-desc">EFTS solution alongside micropayment gateways</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://avanzasolutions.com/rendezvous/" target="_blank" rel="noopener noreferrer">
-        <span class="project-name">Rendezvous</span>
-        <span class="project-desc">Banking middleware</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://www.avanzasolutions.com/wp-content/uploads/bsk-pdf-manager/13_NIMBUS.PDF" target="_blank" rel="noopener noreferrer">
-        <span class="project-name">Nimbus</span>
-        <span class="project-desc">ATM controller switch</span>
-      </a>
-    </li>
-  </ul>
+    <section id="projects" class="section">
+      <h2 class="section-title">Projects</h2>
+      <ul class="projects">
+        <li>
+          <a href="https://swius.com/careers/network-engineers/drive-testing-services/" target="_blank" rel="noopener noreferrer">
+            <span class="project-name">Airview</span>
+            <span class="project-desc">Drive Testing solutions — mobile app for network diagnostics</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.sdriveapp.com/" target="_blank" rel="noopener noreferrer">
+            <span class="project-name">SDrive</span>
+            <span class="project-desc">Cloud storage desktop client for Salesforce</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/noumannawaz/" target="_blank" rel="noopener noreferrer">
+            <span class="project-name">Aspire</span>
+            <span class="project-desc">EFTS solution alongside micropayment gateways</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://avanzasolutions.com/rendezvous/" target="_blank" rel="noopener noreferrer">
+            <span class="project-name">Rendezvous</span>
+            <span class="project-desc">Banking middleware</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.avanzasolutions.com/wp-content/uploads/bsk-pdf-manager/13_NIMBUS.PDF" target="_blank" rel="noopener noreferrer">
+            <span class="project-name">Nimbus</span>
+            <span class="project-desc">ATM controller switch</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section id="connect" class="section">
+      <h2 class="section-title">Connect</h2>
+      <div class="connect-links">
+        <a href="https://www.linkedin.com/in/noumannawaz/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/noumannawaz" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@example.com" target="_blank" rel="noopener noreferrer">Email</a>
+      </div>
+    </section>
+  </main>
 
 </body>
 </html>
