@@ -8,12 +8,13 @@
   <title>Nouman Nawaz</title>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
   <style>
     :root {
       --red: #eb0028;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     html, body {
       min-height: 100vh;
       background: #000;
@@ -50,13 +51,21 @@
 
     /* ——— Menu (top right) ——— */
     .menu {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: 'Tiny5', monospace;
       font-size: 14px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       display: flex;
+      align-items: center;
       gap: 32px;
     }
+    .menu-link {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 0;
+      transition: opacity 0.2s;
+    }
+    .menu-link:hover { opacity: 0.85; }
     .menu-item {
       position: relative;
       padding: 8px 0;
@@ -158,6 +167,7 @@
       <span class="initial">M</span><span class="name"> Nouman Nawaz</span>
     </div>
     <nav class="menu">
+      <a href="#about" class="menu-link">About</a>
       <div class="menu-item">
         <span>Projects</span>
         <div class="menu-dropdown">
