@@ -60,8 +60,20 @@
       justify-content: space-between;
       padding: 24px 40px;
       z-index: 100;
-      background: #000;
+      overflow: hidden;
       border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .header-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .logo-wrap,
+    .menu {
+      position: relative;
+      z-index: 1;
     }
     .logo {
       font-size: 22px;
@@ -210,6 +222,7 @@
 </head>
 <body>
   <header class="header">
+    <canvas id="headerCanvas" class="header-canvas"></canvas>
     <div class="logo-wrap">
       <div class="logo-avatar">
         <img src="avatar.png" alt="Nouman Nawaz">
@@ -314,5 +327,79 @@
     </section>
   </main>
 
+  <script>
+    (function() {
+      const canvas = document.getElementById("headerCanvas");
+      const c = canvas.getContext("2d");
+      let w, h;
+
+      const setCanvasExtents = () => {
+        const header = canvas.parentElement;
+        w = header.offsetWidth;
+        h = header.offsetHeight;
+        canvas.width = w;
+        canvas.height = h;
+      };
+
+      setCanvasExtents();
+      window.addEventListener("resize", setCanvasExtents);
+      new ResizeObserver(setCanvasExtents).observe(canvas.parentElement);
+
+      const makeStars = count => {
+        const out = [];
+        for (let i = 0; i < count; i++) {
+          out.push({
+            x: Math.random() * 1600 - 800,
+            y: Math.random() * 900 - 450,
+            z: Math.random() * 1000
+          });
+        }
+        return out;
+      };
+
+      let stars = makeStars(2000);
+
+      const clear = () => {
+        c.fillStyle = "black";
+        c.fillRect(0, 0, w, h);
+      };
+
+      const putPixel = (x, y, brightness) => {
+        const intensity = brightness * 255;
+        c.fillStyle = `rgb(${intensity},${intensity},${intensity})`;
+        c.fillRect(x, y, 1, 1);
+      };
+
+      const moveStars = distance => {
+        stars.forEach(s => {
+          s.z -= distance;
+          while (s.z <= 1) s.z += 1000;
+        });
+      };
+
+      let prevTime;
+      const tick = time => {
+        prevTime = prevTime || time;
+        moveStars((time - prevTime) * 0.1);
+        prevTime = time;
+        clear();
+
+        const cx = w / 2;
+        const cy = h / 2;
+
+        stars.forEach(star => {
+          const x = cx + star.x / (star.z * 0.001);
+          const y = cy + star.y / (star.z * 0.001);
+          if (x < 0 || x >= w || y < 0 || y >= h) return;
+          const d = star.z / 1000;
+          putPixel(x, y, 1 - d * d);
+        });
+
+        requestAnimationFrame(tick);
+      };
+
+      requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 </html>
