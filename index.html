@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000000">
   <meta name="description" content="Nouman Nawaz — Software Engineer">
-  <title>Nouman Nawaz</title>
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
+  <title>M Nouman Nawaz</title>
+  <link rel="icon" type="image/png" href="https://github.com/noumannawaz.png">
+  <link rel="apple-touch-icon" href="https://github.com/noumannawaz.png">
   <style>
     :root {
       --red: #eb0028;
@@ -19,7 +18,7 @@
       min-height: 100vh;
       background: #000;
       color: #fff;
-      font-family: 'Satoshi', -apple-system, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", system-ui, sans-serif;
       font-weight: 400;
       font-size: 17px;
       line-height: 1.6;
@@ -27,6 +26,29 @@
     }
 
     /* ——— Header ——— */
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2a2a2c 0%, #1d1d1f 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--red);
+    }
+    .logo-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
     .header {
       position: fixed;
       top: 0;
@@ -41,7 +63,6 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .logo {
-      font-family: 'Satoshi', sans-serif;
       font-size: 22px;
       font-weight: 700;
       letter-spacing: -0.03em;
@@ -51,7 +72,6 @@
 
     /* ——— Menu (top right) ——— */
     .menu {
-      font-family: 'Tiny5', monospace;
       font-size: 14px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -69,10 +89,13 @@
     .menu-item {
       position: relative;
       padding: 8px 0;
-      cursor: default;
     }
-    .menu-item > span { color: #fff; }
-    .menu-item:hover > span { opacity: 0.9; }
+    .menu-item-label {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+    }
+    .menu-item-label:hover { opacity: 0.9; }
     .menu-dropdown {
       position: absolute;
       top: 100%;
@@ -92,8 +115,7 @@
       padding: 10px 0;
       color: rgba(255,255,255,0.85);
       text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.08em;
+      font-size: 14px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       background: #000;
       padding-right: 16px;
@@ -114,6 +136,17 @@
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .section:last-child { border-bottom: none; }
+    .intro-name {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+    .intro-tagline {
+      font-size: 17px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 16px;
+    }
     .section-title {
       font-size: 13px;
       font-weight: 600;
@@ -152,9 +185,11 @@
     }
     .connect-links a:hover { color: var(--red); }
 
+    .logo-avatar:has(img) .avatar-placeholder { display: none; }
     @media (max-width: 640px) {
       .header { padding: 20px 24px; }
       .logo { font-size: 18px; }
+      .logo-avatar { width: 36px; height: 36px; font-size: 14px; }
       .menu { font-size: 12px; gap: 20px; }
       main { padding: 100px 24px 60px; }
       .section { padding: 48px 0; }
@@ -163,13 +198,18 @@
 </head>
 <body>
   <header class="header">
-    <div class="logo">
-      <span class="initial">M</span><span class="name"> Nouman Nawaz</span>
+    <div class="logo-wrap">
+      <div class="logo-avatar">
+        <img src="https://github.com/noumannawaz.png" alt="Nouman Nawaz">
+      </div>
+      <div class="logo">
+        <span class="initial">M</span><span class="name"> Nouman Nawaz</span>
+      </div>
     </div>
     <nav class="menu">
       <a href="#about" class="menu-link">About</a>
       <div class="menu-item">
-        <span>Projects</span>
+        <a href="#projects" class="menu-item-label">Projects</a>
         <div class="menu-dropdown">
           <a href="https://swius.com/careers/network-engineers/drive-testing-services/" target="_blank" rel="noopener noreferrer">Airview</a>
           <a href="https://www.sdriveapp.com/" target="_blank" rel="noopener noreferrer">SDrive</a>
@@ -179,7 +219,7 @@
         </div>
       </div>
       <div class="menu-item">
-        <span>Contact</span>
+        <a href="#connect" class="menu-item-label">Contact</a>
         <div class="menu-dropdown">
           <a href="https://www.linkedin.com/in/noumannawaz/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/noumannawaz" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -191,8 +231,10 @@
 
   <main>
     <section id="about" class="section">
+      <h1 class="intro-name">M Nouman Nawaz</h1>
+      <p class="intro-tagline">Software Engineer, primarily working with C++.</p>
       <h2 class="section-title">About</h2>
-      <p>Senior Software engineer with a passion for developing robust, scalable software. Been working in cross-functional teams, driving product development, and delivering results.</p>
+      <p>Senior Software Engineer with a passion for developing robust, scalable software. Been working in cross-functional teams, driving product development, and delivering results.</p>
       <p>I have a strong work ethic and I get the job done. I'm a bit of a geek and bookworm, probably be found fixing tech and learning new stuff. In my free time, I enjoy traveling, reading and keeping up with the latest computer hardware trends. I enjoy staying current with new technologies and learning new skills.</p>
     </section>
 
